@@ -1,0 +1,15 @@
+
+
+Clement:
+- investigate data2vec, do small toy example
+- feed input/ output to data2vec for word embedding
+
+
+Karel:
+- create db to store embeddings
+- video link to transcript 
+
+
+
+In common:
+- take a look at llama models (fb/stanford)
