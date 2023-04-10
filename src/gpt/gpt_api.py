@@ -28,7 +28,7 @@ def handle_response(message):
         engine = "text-davinci-003",
         prompt = message,
         temperature = 0.1,
-        max_tokens = 4096,
+        max_tokens = 1024,
         )
     responseMessage = response.choices[0].text
 
