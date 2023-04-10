@@ -21,11 +21,7 @@
 import os
 import openai
 
-from revChatGPT.Official import Chatbot
-from asgiref.sync import sync_to_async
-from env import GPT_TOKEN
-
-openai.api_key = GPT_TOKEN
+openai.api_key = os.getenv('GPT_TOKEN')
 
 def handle_response(message):
     response = openai.Completion.create(
