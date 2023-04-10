@@ -1,1 +1,0 @@
-GPT_TOKEN = "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"
