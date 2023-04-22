@@ -6,6 +6,7 @@
 - run
 
 ```bash
-docker build --tag telegram_chat_gpt_bot .
-docker run --env-file dev/.env -it telegram_chat_gpt_bot
+docker compose build                                      
+docker-compose up
+
 ```

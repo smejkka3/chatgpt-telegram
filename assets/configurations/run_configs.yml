@@ -1,0 +1,5 @@
+run_resources:
+  paths:
+    init_db: 'assets/sql/create_db.sql'
+    populate_db_test: 'assets/sql/fill_in_db.sql'
+    db_params: dev/database.ini
