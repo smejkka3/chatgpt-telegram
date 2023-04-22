@@ -8,9 +8,7 @@ services:
       - POSTGRES_PASSWORD=postgres
     ports:
       - '5432:5432'
-    volumes: 
-      - db:/var/lib/postgresql/data
-      - ./assets/sql/init.sql:/docker-entrypoint-initdb.d/create_tables.sql
-volumes:
-  db:
-    driver: local
+  app:
+    build: .
+    env_file:
+    - dev/.env

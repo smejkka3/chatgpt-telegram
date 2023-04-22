@@ -1,4 +1,4 @@
-CREATE TABLE quote (
+CREATE TABLE history (
     id SERIAL PRIMARY KEY,
     chat_id character varying(255) NOT NULL UNIQUE,
     user character varying(255) NOT NULL,
@@ -6,5 +6,6 @@ CREATE TABLE quote (
     updated_at timestamp with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
-INSERT INTO quote (id, chat_id, user) VALUES 
-(1, 'foo', 'bar')
+INSERT INTO history (id, chat_id, user) 
+VALUES 
+        (1, 'foo', 'bar', current_timestamp, current_timestamp)
