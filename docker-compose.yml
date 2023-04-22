@@ -6,15 +6,40 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+    hostname: postgres
     ports:
       - '5432:5432'
+    networks:
+      - mynet
     volumes:
-      - ./postgres-data:/var/lib/postgresql/data
+      - databse:/var/lib/postgresql/data
       # copy the sql script to create tables
-      - ./assets/sql/create_db.sql:/docker-entrypoint-initdb.d/create_tables.sql
+      - ./assets/sql/create_db.sql:/docker-entrypoint-initdb.d/create_db.sql
       # copy the sql script to fill tables
-      - ./assets/sql/fill_in_db.sql:/docker-entrypoint-initdb.d/fill_tables.sql
+      - ./assets/sql/fill_in_db.sql:/docker-entrypoint-initdb.d/fill_in_db.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
   app:
     build: .
+    restart: always
     env_file:
     - dev/.env
+    depends_on:
+      db:
+        condition: service_healthy
+    links:
+      - db
+    networks:
+      - mynet
+    volumes:
+      - .:/app_directory
+    ports:
+      - "5000:5000"
+networks:
+  mynet:
+    name: my-shared-db-network
+volumes:
+  databse:
